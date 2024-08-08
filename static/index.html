@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Who?</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Guess Who?</h1>
+        <div id="auth">
+            <h2>Login</h2>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="login()">Login</button>
+            <button onclick="register()">Register</button>
+            <button onclick="guest()">Continue as Guest</button>
+        </div>
+        <div id="game-options" style="display: none;">
+            <h2>Select Game Mode</h2>
+            <button onclick="startPublicMatch()">Start Public Match</button>
+            <button onclick="playFriend('create')">Create Game</button>
+            <input type="text" id="gameCode" placeholder="Enter Game Code">
+            <button onclick="playFriend('join', document.getElementById('gameCode').value)">Join Game</button>
+        </div>
+        <div id="waiting-page" style="display: none;">
+            <h2>Waiting for another player...</h2>
+            <h3 id="game-code"></h3>
+        </div>
+    </div>
+    <div id="game-app" style="display: none;">
+        <div id="game" style="display: none;">
+            <h2>Game</h2>
+            <div class="game-container">
+                <div class="board-container">
+                    <div id="who-card"></div>
+                    <div id="board"></div>
+                </div>
+                <div class="chat-container">
+                    <div id="chat" class="chat"></div>
+                    <div class="controls">
+                        <input type="text" id="message" placeholder="Type a message">
+                        <button id="send" onclick="sendMessage()">Send</button>
+                        <input type="text" id="guess" placeholder="Your Guess">
+                        <button id="guess-btn" onclick="guess()">Guess</button>
+                    </div>
+                </div>
+            </div>
+            <div id="current-turn"></div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+/* styles.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: cyan;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+}
+
+#app {
+    background-color: yellow;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+#game-app {
+    background-color: yellow;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 90%;
+}
+
+#auth, #game-options, #game {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    width: 90%;
+}
+
+#board div {
+    width: 100px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+}
+
+#who-card {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+
+.card {
+    position: relative;
+    width: 120px;
+    height: 150px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    margin: 5px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+.card .card-name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+#board .card-name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Flexbox styles for the container */
+.game-container {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.board-container {
+    width: 80%;
+    padding: 10px;
+}
+
+.chat-container {
+    width: 20%;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat {
+    flex-grow: 1;
+    height: 150px;
+    overflow-y: scroll;
+    background-color: #eee;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+}
+
+.controls input,
+.controls button {
+    margin-bottom: 10px;
+}
