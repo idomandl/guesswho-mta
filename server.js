@@ -1,21 +1,72 @@
 // server.js
 
+// const https = require('https');
+// const fs = require('fs');
+// const WebSocket = require('ws');
+
+// // Load your SSL certificate and key files
+// const serverOptions = {
+//     cert: fs.readFileSync('path/to/certificate.pem'),
+//     key: fs.readFileSync('path/to/private-key.pem'),
+// };
+
+// // Create an HTTPS server
+// const server = https.createServer(serverOptions);
+
+// // Create WebSocket server on top of the HTTPS server
+// const wss = new WebSocket.Server({ server });
+
+// wss.on('connection', (ws) => {
+//     console.log('Client connected via WSS');
+//     ws.on('message', (message) => {
+//         console.log('Received message:', message);
+//         ws.send('Hello, you are connected over a secure WebSocket!');
+//     });
+// });
+
+// server.listen(443, () => {
+//     console.log('Server is running on https://localhost:443');
+// });
+
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const WebSocket = require('ws');
+//////////////////////////////////////////////////////////////////
+const serverOptions = {
+      cert: fs.readFileSync('ssl/server.cert'),
+      key: fs.readFileSync('ssl/server.key'),
+};
 
 const app = express();
-const port = 3000;
 
-const wss = new WebSocket.Server({ noServer: true });
+const server = https.createServer(serverOptions, app);
+
+// Create WebSocket server on top of the HTTPS server
+const wss = new WebSocket.Server({ server });
+
+
+
+
+
+const port = 443;
+
 const clients = new Map();
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'static')));
+app.use((req, res, next) => {
+  if (req.secure) {
+      next(); // request was via https, so do nothing
+  } else {
+      res.redirect('https://' + req.headers.host + req.url); // redirect to https
+  }
+});
 
 let users = [];
 let games = [];
@@ -300,13 +351,12 @@ wss.on('connection', (ws, req) => {
   }
 });
 
+
+
+
 // Upgrade HTTP server to WebSocket server
-const server = app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+server.listen(443, () => {
+  console.log('Server is running on https://localhost:443');
 });
 
-server.on('upgrade', (request, socket, head) => {
-  wss.handleUpgrade(request, socket, head, (ws) => {
-    wss.emit('connection', ws, request);
-  });
-});
+

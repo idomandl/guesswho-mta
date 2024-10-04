@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:3000';
+const apiUrl = 'https://guess-who-mta-deploy-2e95bf2a8b04.herokuapp.com:443';
 let ws;
 
 const login = async () => {
@@ -83,7 +83,7 @@ const guest = async () => {
 
 const connectWebSocket = (username) => {
     console.log(`Connecting WebSocket for ${username}`);
-    ws = new WebSocket(`ws://localhost:3000`, username);
+    ws = new WebSocket(`wss://localhost:443`, username);
 
     ws.onopen = () => {
         console.log('WebSocket connection opened');

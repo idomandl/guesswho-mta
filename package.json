@@ -17,5 +17,13 @@
     "jsonwebtoken": "^9.0.2",
     "ws": "^8.18.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idomandl/guesswho.git"
+  },
+  "bugs": {
+    "url": "https://github.com/idomandl/guesswho/issues"
+  },
+  "homepage": "https://github.com/idomandl/guesswho#readme",
   "description": ""
 }
