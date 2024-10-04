@@ -1,4 +1,4 @@
-const apiUrl = 'https://guess-who-mta-deploy-2e95bf2a8b04.herokuapp.com:443';
+const apiUrl = 'https://guess-who-mta-deploy-2e95bf2a8b04.herokuapp.com:'+ (process.env.PORT|| '443');
 let ws;
 
 const login = async () => {

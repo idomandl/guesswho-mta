@@ -54,7 +54,7 @@ const wss = new WebSocket.Server({ server });
 
 
 
-const port = 443;
+const port = process.env.PORT || 443;
 
 const clients = new Map();
 
@@ -355,7 +355,7 @@ wss.on('connection', (ws, req) => {
 
 
 // Upgrade HTTP server to WebSocket server
-server.listen(443, () => {
+server.listen(port, () => {
   console.log('Server is running on https://localhost:443');
 });
 
